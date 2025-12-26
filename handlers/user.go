@@ -52,16 +52,20 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 // DELETE /users/{id}
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
-	idStr := r.URL.Path[len("/users/"):] // Ambil ID dari URL
+	idStr := r.URL.Path[len("/users/"):]
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		http.Error(w, "Invalid ID", http.StatusBadRequest) // Error 400
 		return
 	}
-
-	_, err = database.DB.Exec("DELETE FROM users WHERE id = $1", id)
+	result, err := database.DB.Exec("DELETE FROM users WHERE id = $1", id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	rowsAffected, _ := result.RowsAffected()
+	if rowsAffected == 0 {
+		http.Error(w, "User not found", http.StatusNotFound) // Error 404
 		return
 	}
 	jsonResponse(w, http.StatusOK, map[string]string{"message": "User deleted"})

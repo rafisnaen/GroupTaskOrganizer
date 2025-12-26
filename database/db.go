@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
 
@@ -13,6 +14,9 @@ var DB *sql.DB
 func Connect() {
 	var err error
 	connStr := os.Getenv("DB_URL")
+
+	// Buat debug koneksi
+	fmt.Println("Connecting to database with URL:", connStr)
 
 	DB, err = sql.Open("postgres", connStr)
 	if err != nil {
