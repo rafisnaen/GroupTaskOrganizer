@@ -39,7 +39,7 @@ Final Project Submission untuk GDGoC Backend Workshop 2025/2026. <br>
 1. **Clone Repository**
      ```bash
        git clone https://github.com/rafisnaen/GroupTaskOrganizer.git
-       cd <GroupTaskOrganizer>
+       cd GroupTaskOrganizer
      ```
 2. **Setup Database**  
    - Buka [Supabase](https://supabase.com/) dan login/signup dengan akun github  
