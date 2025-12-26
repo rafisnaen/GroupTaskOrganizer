@@ -64,7 +64,7 @@ Final Project Submission untuk GDGoC Backend Workshop 2025/2026. <br>
           created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
      ```
-3. Install dependencies:
+3. Install dependencies di terminal:
      ```
      go mod tidy
      ```
